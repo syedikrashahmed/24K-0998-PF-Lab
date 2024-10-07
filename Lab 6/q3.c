@@ -11,7 +11,7 @@ Series is = 0 1 1 2 3 */
 #include <stdio.h>
 int main()
 {
-        int i, num, temp;
+        int i, num, temp = 1; 
         int num1 = 0; 
         int num2 = 1;
         char prime = 'y' ;
@@ -34,10 +34,10 @@ int main()
                 {    printf("Series is = 0 1");
                      for(i=2 ; i<num ; i++)
                      {
-                            printf(" %d", num1 + num2);
-                            temp = num2;
-                            num2 = num1 + num2;
+                            printf(" %d", temp);
                             num1 = num2;
+                            num2 = temp;
+                            temp = num1 + num2;
                      }
                 }
             break;
