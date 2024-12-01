@@ -20,7 +20,7 @@ int main()
 void swaped(int *aPtr, int *bPtr, int *cPtr)
 {
     int temp= *bPtr;
-    *bPtr = *cPtr;
+    *bPtr = *aPtr;
     *cPtr = *aPtr;
     *aPtr = temp;
 }
