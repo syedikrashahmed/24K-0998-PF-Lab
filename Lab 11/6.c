@@ -1,6 +1,5 @@
-/*6. Define a structure Employee with fields name, id, salary, and a nested structure Address
-(fields: city and zip_code). Write a program to input details for multiple employees, store
-them in a file, and read them back to display.*/
+/*6. Define a structure Employee with fields name, id, salary, and a nested structure Address (fields: city and zip_code). Write a program to input details for multiple employees, store them in a file, and read them back to display.*/
+
 #include <stdio.h>
 #include <string.h>
 
