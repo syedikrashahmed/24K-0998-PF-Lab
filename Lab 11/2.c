@@ -1,54 +1,54 @@
+/*2. How would you implement a program to count the occurrences of each word in a text
+file? Write the approach and code.*/
+
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
-typedef struct {
-    char word[20];
-    int count;
-} WordCount;
+typedef struct
+{
+    char word[100];
+    int count;   
+}WordCount;
 
-int main() {
-
-    FILE *fptr = fopen("file.txt", "r");
-    if (fptr == NULL) 
-    {
-        printf("File not found");
-        return 1;
+int main()
+{
+    FILE *fptr;
+    char buffer[100];
+    int arrsize = 1;
+    WordCount* arr = (WordCount*)malloc(1*sizeof(WordCount));
+    fptr = fopen("things.txt", "r");
+    if (fptr == NULL)
+    {  
+        printf("Error in opening file");
+        return 0; 
     }
-
-    char word[20];
-    WordCount words[100];
-    int wordIndex = 0;
-
-    for (int i = 0; i < 100; i++) 
-    {
-        words[i].count = 0;
-    }
-
-    while (fscanf(file, "%s", word) != EOF) 
-    {
+    while (fscanf(fptr, "%s", buffer) != EOF)
+    {  
         int found = 0;
-        for (i = 0; i < wordIndex; i++) 
-        {
-            if (strcmp(words[i].word, word) == 0) 
-            {
-                words[i].count++;
+        for (int i = 0; i < arrsize; i++)
+        {  
+            if (strcmp(buffer, arr[i].word) == 0)
+            {   
+                arr[i].count++;
                 found = 1;
                 break;
             }
         }
-
-        if (found == 0 && wordIndex < 100) 
-        {
-            strcpy(words[wordIndex].word, word);
-            words[wordIndex].count = 1;
-            wordIndex++;
-        }
+        
+        if (found == 0)
+            {
+                arrsize++;  
+                arr = realloc(arr, arrsize*sizeof(WordCount)); 
+                strcpy(arr[arrsize - 1].word, buffer);
+                arr[arrsize - 1].count = 1; 
+            } 
     }
     fclose(fptr);
-
-    printf("WORD COUNTS\n");
-    for (i = 0; i < wordIndex; i++) 
-    {
-        printf("%s: %d\n", words[i].word, words[i].count);
+    
+    for (int i = 0; i < arrsize; i++)
+    {   
+        printf("%d) %s: %d\n", i + 1, arr[i].word, arr[i].count); 
     }
+    free(arr);    
 }
